@@ -1,16 +1,20 @@
-package com.esme.spring.faircorp;
+package com.emse.spring.faircorp;
 
+import org.hamcrest.Matchers;
+import org.junit.Rule;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class FaircorpApplicationTests {
+import org.springframework.boot.test.rule.OutputCapture;
+
+public class ConsoleGreetingServiceTests {
+
+	@Rule
+	public OutputCapture outputCapture = new OutputCapture();
 
 	@Test
-	public void contextLoads() {
+	public void testGreeting() {
+		ConsoleGreetingService greetingService = new ConsoleGreetingService(); // (1)
+		greetingService.greet("Spring");
+		outputCapture.expect(Matchers.startsWith("Hello, Spring!"));
 	}
-
 }
