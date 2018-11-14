@@ -5,28 +5,19 @@ import java.util.List;
 
 @Entity
 //@Table(name = "SP_Room")
-public class Room {
+public class Building {
 
     @Id
     @GeneratedValue
     private Long id;
 
-    @Column(nullable = false, length=255)
-    private String name;
+    @OneToMany (mappedBy = "building")
+    private List<Building> buildings;
 
-    @Column(nullable = false)
-    private Integer floor;
-
-    @OneToMany (mappedBy = "room")
-    private List<Light> lights;
-
-    @ManyToOne(optional = false)
-    private Building building;
-
-    public Room() {
+    public Building() {
     }
 
-    public Room(String name, Integer floor) {
+    public Building(String name, Integer floor) {
         this.name = name;
         this.floor = floor;
     }

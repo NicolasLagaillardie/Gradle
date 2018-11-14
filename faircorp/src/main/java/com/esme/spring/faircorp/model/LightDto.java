@@ -3,7 +3,7 @@ package com.esme.spring.faircorp.model;
 public class LightDto {
 
     private Long id;
-    private Long roomid;
+    private Long roomId;
     private Integer level;
     private Status status;
 
@@ -14,7 +14,7 @@ public class LightDto {
         this.id = light.getId();
         this.level = light.getLevel();
         this.status = light.getStatus();
-        this.roomid = light.getRoom().getId();
+        this.roomId = light.getRoom().getId();
     }
 
     public Long getId() {
@@ -30,6 +30,6 @@ public class LightDto {
     }
 
     public Long getRoomId() {
-        return roomid;
+        return roomId;
     }
 }
