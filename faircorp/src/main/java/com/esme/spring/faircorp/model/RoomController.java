@@ -1,4 +1,4 @@
-package com.esme.spring.faircorp.hello;
+package com.esme.spring.faircorp.model;
 
 import com.esme.spring.faircorp.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController  // (1)
+@CrossOrigin(origins = { "http://localhost:3010" }, maxAge = 3600)
 @RequestMapping("/api/rooms") // (2)
 @Transactional // (3)
 public class RoomController {
@@ -62,6 +63,13 @@ public class RoomController {
 
     @DeleteMapping(path = "/{id}")
     public void delete(@PathVariable Long id) {
+        Room room = roomDao.findById(id).orElseThrow(IllegalArgumentException::new);
+
+        List<Light> lights = room.getLights();
+        for (int i = 0; i < lights.size(); i++) {
+            lightDao.deleteById(lights.get(i).getId());
+        }
+
         roomDao.deleteById(id);
     }
 }

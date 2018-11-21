@@ -1,4 +1,4 @@
-package com.esme.spring.faircorp.hello;
+package com.esme.spring.faircorp.model;
 
 import com.esme.spring.faircorp.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController  // (1)
+@CrossOrigin(origins = { "http://localhost:3010" }, maxAge = 3600)
 @RequestMapping("/api/lights") // (2)
 @Transactional // (3)
 public class LightController {

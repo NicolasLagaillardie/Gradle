@@ -11,15 +11,17 @@ public class Building {
     @GeneratedValue
     private Long id;
 
+    @Column(nullable = false, length=255)
+    private String name;
+
     @OneToMany (mappedBy = "building")
-    private List<Building> buildings;
+    private List<Room> rooms;
 
     public Building() {
     }
 
-    public Building(String name, Integer floor) {
+    public Building(String name) {
         this.name = name;
-        this.floor = floor;
     }
 
     public Long getId() {
@@ -38,15 +40,13 @@ public class Building {
         this.name = name;
     }
 
-    public Integer getFloor() {
-        return floor;
+    public List<Room> getRooms() {return rooms;}
+
+    public List<Light> getLights() {
+        List<Light> Lights = rooms.get(0).getLights();
+        for (int i = 1; i < rooms.size(); i++) {
+            Lights.addAll(rooms.get(0).getLights());
+        }
+        return Lights;
     }
-
-    public void setFloor(Integer floor) {
-        this.floor = floor;
-    }
-
-    public List<Light> getLights() {return lights;}
-
-    public Building getBuilding() {return building;}
 }
