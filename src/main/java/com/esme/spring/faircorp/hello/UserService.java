@@ -1,8 +1,5 @@
-package com.emse.spring.faircorp.hello;
+package com.esme.spring.faircorp.hello;
 
-import org.springframework.stereotype.Service;
-
-@Service
 public interface UserService {
     void greetAll();
 }
